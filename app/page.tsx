@@ -1,11 +1,15 @@
-import Image from "next/image";
+// import Image from "next/image";
+
+import HomePage from "./components/Home";
+
+// import Link from "next/link";
+// import { motion } from "framer-motion";
 
 export default function Home() {
   return (
     <>
-    <div>
-      <h1>Hello World</h1>
-    </div>
+    <HomePage/>
+
     </>
   );
 }
