@@ -11,17 +11,19 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET as string,
   callbacks: {
     async jwt({ token, account }) {
-      if (account) {
-        token.accessToken = account.access_token;
+      // Check if account and access_token are present
+      if (account && account.access_token) {
+        token.accessToken = account.access_token as string; // Explicitly cast to string
       }
-      return token;
+      return token; // Return the modified token
     },
     async session({ session, token }) {
-      session.accessToken = token.accessToken;
-      return session;
+      if (token.accessToken) {
+        session.accessToken = token.accessToken as string; // Explicitly cast to string
+      }
+      return session; // Return the modified session
     },
   },
 };
-
 
 export default NextAuth(authOptions);
